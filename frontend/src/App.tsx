@@ -59,9 +59,9 @@ function App() {
           )} */}
         <h2>Вопрос 1. Столица Норвегии</h2>
         <select name="questionsSelect" value={question} onChange={handleChange} id="questions-select">
-          <option value="val1">Рейкьявик</option>
-          <option value="val2">Осло</option>
-          <option value="val3">Лондон</option>
+          <option value="Рейкьявик">Рейкьявик</option>
+          <option value="Осло">Осло</option>
+          <option value="Лондон">Лондон</option>
         </select>
         <input type="submit" value='ответить'/>
       </form>
