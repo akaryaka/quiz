@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
+
 // import axios from 'axios';
 import './App.css'
 
 function App() {
   const [data, newData] = useState([]);
+  const [res, newRes] = useState(Object);
   const [question, setQuestion] = useState('Рейкьявик');
 
   const handleSubmit = async (event: SubmitEvent) => {
     event.preventDefault();
     const dataSubmit = {
+      // id: id,
       question: question,
     };
     try {
@@ -48,21 +51,14 @@ function App() {
     <>
       <h1>Квиз</h1>
       <form onSubmit={handleSubmit} action="/api/submit" method='post'>
-        {/* {data.map(question => (
+        {data.map(question => (
           <>
             <h2 key={question.id}>{question.text}</h2>
-            <select name="" id="">
-              {question.options.map((option, key) => <option key={key}>{option}</option>)}
+            <select name="questionsSelect" onChange={handleChange} id="questions-select">
+              {question.options.map((option, key) => <option key={key} value={option}>{option}</option>)}
             </select>
           </>
-          )
-          )} */}
-        <h2>Вопрос 1. Столица Норвегии</h2>
-        <select name="questionsSelect" value={question} onChange={handleChange} id="questions-select">
-          <option value="Рейкьявик">Рейкьявик</option>
-          <option value="Осло">Осло</option>
-          <option value="Лондон">Лондон</option>
-        </select>
+        ))}
         <input type="submit" value='ответить'/>
       </form>
     </>
