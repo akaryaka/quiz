@@ -23,24 +23,40 @@ const questions = [
 ]
 
 const answers = [
-  { id: 1, value: 2}
+  { id: 1, value: '1'}
 ]
 
-function checkAnswer(questions) {
-  
-}
+let count = 0
 
 app.get('/api/questions', (req, res) => {
   res.json(questions)
 })
 
 app.post('/api/submit', (req, res) => {  
-  res.status(200).json(
-    {
-      id: 1,
-      questionApi: req.body.question
+  res.status(200).json( 
+    { 
+      obj: String(Object.values(req.body)), 
+      res: checkAnswer()
     }
   );
+
+  function checkAnswer() {
+    let answerCheck = false;
+    
+    
+    answers.map(answer => {
+      if (answer.value === String(Object.values(req.body))) {
+        answerCheck = true
+      }
+    })
+
+    if (answerCheck) {
+      count += 1
+      return `Правильно! Правильные ответы: ${count}`
+    } else {
+      return `Неверно! Правильные ответы: ${count}`
+    } ;
+  }
 })
 
 app.listen(port);
