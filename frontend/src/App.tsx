@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
+import Question from './components/Question';
 
-// import axios from 'axios';
-import './App.css'
 
 function App() {
   const [data, newData] = useState([]);
@@ -10,17 +9,15 @@ function App() {
 
   const handleSubmit = async (event: SubmitEvent) => {
     event.preventDefault();
-    const dataSubmit = {
-      // id: id,
-      question: question,
-    };
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries()); 
     try {
       const response = await fetch('http://localhost:8000/api/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(dataSubmit), 
+        body: JSON.stringify(data), 
       })  
       const result = await response.json();
 
@@ -32,7 +29,7 @@ function App() {
     }
   }
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: any, id) => {
     setQuestion(event.target.value)
   }
 
@@ -46,7 +43,6 @@ function App() {
       .catch(err => console.error(err));
   }, []);
   
-  
   return (
     <>
       <h1>Квиз</h1>
@@ -54,11 +50,12 @@ function App() {
         {data.map(question => (
           <>
             <h2 key={question.id}>{question.text}</h2>
-            <select name="questionsSelect" onChange={handleChange} id="questions-select">
-              {question.options.map((option, key) => <option key={key} value={option}>{option}</option>)}
+            <select name={question.id} onChange={handleChange} id="questions-select">
+              {question.options.map((option, key) => <option key={key} value={key}>{option}</option>)}
             </select>
           </>
         ))}
+        <Question />
         <input type="submit" value='ответить'/>
       </form>
     </>
