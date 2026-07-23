@@ -1,6 +1,10 @@
 function Question() {
+  const variable: boolean = true;
+
   return(
-    <>question</>
+    <>
+      { variable ? 'sdsd' : 'sa'}
+    </>
   )
 }
 
