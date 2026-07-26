@@ -1,19 +1,8 @@
 import styled from "styled-components"
+import { StyledForm } from "../components/StyledForm"
+import { StyledTitle } from "../components/StyledTitle"
 
 function Home() {
-  const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    border: 1px solid #000;
-    padding: 20px;
-    border-radius: 10px;
-  `
-
-  const Title = styled.h1`
-    margin-bottom: 25px;
-  `
-
   const Text = styled.p`
     margin-bottom: 25px;
   `
@@ -27,11 +16,11 @@ function Home() {
 
   return (
     <>
-      <Form>
-        <Title>Квиз</Title>
+      <StyledForm>
+        <StyledTitle>Квиз</StyledTitle>
         <Text>Привет! Давай проверим, насколько хорошо ты знаешь столицы</Text>
         <BtnNext>Далее</BtnNext>
-      </Form>
+      </StyledForm>
     </>
   )
 }

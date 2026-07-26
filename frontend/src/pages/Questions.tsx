@@ -1,3 +1,6 @@
+import { StyledForm } from "../components/StyledForm"
+import { StyledTitle } from "../components/StyledTitle"
+
 function Questions() {
   
   // const [res, newRes] = useState(Object);
@@ -36,7 +39,11 @@ function Questions() {
   // }, []);
   
   return (
-    <>page Questions</>
+    <>
+      <StyledForm>
+        <StyledTitle>page Questions</StyledTitle>
+      </StyledForm>
+    </>
   )
 }
 

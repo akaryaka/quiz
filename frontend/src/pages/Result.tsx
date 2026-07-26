@@ -1,6 +1,13 @@
+import { StyledForm } from "../components/StyledForm"
+import { StyledTitle } from "../components/StyledTitle"
+
 function Result() {
   return (
-    <>page Result</>
+    <>
+      <StyledForm>
+        <StyledTitle>page Result</StyledTitle>
+      </StyledForm>
+    </>
   )
 }
 
