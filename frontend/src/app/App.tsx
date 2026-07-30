@@ -1,36 +1,43 @@
 import GlobalStyles from '@/styles/global.style';
-import { BrowserRouter,Route, Routes, Link, Outlet } from "react-router";
-import Home from '@/pages/Home';
-import Questions from '@/pages/Questions';
-import Result from '@/pages/Result';
+import { useState } from 'react';
 import styled from 'styled-components';
+import { pages } from './pages';
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`
+
+const BtnNext = styled.button`
+  padding: 5px;
+  width: 100px;
+  cursor: pointer;
+  margin: 0 auto;
+`
 
 function App() {
-  const Container = styled.div`
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  `
+  const [index, setIndex] = useState(0);
+  
+  function handleClick() {
+    if (index < pages.length-1) {
+      setIndex(index + 1);
+    } else {
+      setIndex(0)
+    }
+  }
+
+  const Page = pages[index];
   
   return (
     <>
       <GlobalStyles />
       <Container>
-        <BrowserRouter>
-          <nav>
-            <Link to="/">Главная</Link>
-            <Link to="/questions">Вопросы</Link>
-            <Link to="/result">Результаты</Link>
-          </nav>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/questions" element={<Questions />} />
-            <Route path="/result" element={<Result />} />
-          </Routes>
-        </BrowserRouter>
-        
+        <Page />  
+        <BtnNext onClick={handleClick}>{index == (pages.length-1) ? 'сброс' : 'далее'}</BtnNext>
       </Container>
     </>
   )
