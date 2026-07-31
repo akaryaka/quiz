@@ -1,5 +1,20 @@
-import Home from "../pages/Home";
-import Questions from "../pages/Questions";
-import Result from "../pages/Result";
-
-export const pages = [Home, Questions, Result]
+export const pages = [
+  {
+    id: 1,
+    component: 'Home',
+    title: 'Квиз',
+    text: 'Привет! Давай проверим, насколько хорошо ты знаешь столицы',
+  },
+  {
+    id: 2,
+    component: 'Questions',
+    title: 'Вопросы',
+    text: '',
+  },
+  {
+    id: 3,
+    component: 'Result',
+    title: 'Результаты',
+    text: '',
+  }
+]
