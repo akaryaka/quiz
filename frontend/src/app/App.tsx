@@ -2,6 +2,8 @@ import GlobalStyles from '@/styles/global.style';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { pages } from './pages';
+import LayoutPage from '../components/LayoutPage';
+import Question from '../components/Question';
 
 const Container = styled.div`
   width: 100%;
@@ -21,6 +23,7 @@ const BtnNext = styled.button`
 
 function App() {
   const [index, setIndex] = useState(0);
+  const page = pages[index];
   
   function handleClick() {
     if (index < pages.length-1) {
@@ -30,13 +33,11 @@ function App() {
     }
   }
 
-  const Page = pages[index];
-  
   return (
     <>
       <GlobalStyles />
       <Container>
-        <Page />  
+        <LayoutPage title={page.title} content={page.component === 'Questions' ? <Question /> : ''} text={page.text} />
         <BtnNext onClick={handleClick}>{index == (pages.length-1) ? 'сброс' : 'далее'}</BtnNext>
       </Container>
     </>
