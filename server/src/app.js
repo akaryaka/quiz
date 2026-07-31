@@ -17,13 +17,69 @@ const pool = new Pool({
 });
 
 const questions = [
-  { id: 1, text: 'Вопрос 1. Столица Норвегии',  options: ['Рейкьявик', 'Осло', 'Лондон'], status: true},
-  // { id: 2, text: 'Вопрос 2. Столица Бельгии',  options: ['Брюссель', 'Рейкъявик', 'Брюгге'], status: false },
-  // { id: 3, text: 'Вопрос 3. Столица Германии',  options: ['Бостон', 'Мюнхен', 'Берлин'], status: false}
+  {
+    id: 1,
+    text: 'Вопрос 1. Столица Норвегии',
+    options: [
+      {
+        id: 1,
+        city: 'Рейкьявик'
+      },
+      {
+        id: 2,
+        city: 'Осло'
+      },
+      {
+        id: 3,
+        city: 'Лондон'
+      },
+    ],
+    status: true
+  },
+  {
+    id: 2,
+    text: 'Вопрос 2. Столица Бельгии',
+    options:
+      [
+        {
+          id: 1,
+          city: 'Брюссель'
+        },
+        {
+          id: 2,
+          city: 'Рейкъявик'
+        },
+        {
+          id: 3,
+          city: 'Брюгге'
+        },
+      ],
+    status: false
+  },
+  {
+    id: 3,
+    text: 'Вопрос 3. Столица Германии',
+    options:
+      [
+        {
+          id: 1,
+          city: 'Бостон'
+        },
+        {
+          id: 2,
+          city: 'Мюнхен'
+        },
+        {
+          id: 3,
+          city: 'Берлин'
+        },
+      ],
+    status: false
+  }
 ]
 
 const answers = [
-  { id: 1, value: '1'}
+  { id: 1, value: '1' }
 ]
 
 let count = 0
@@ -32,18 +88,17 @@ app.get('/api/questions', (req, res) => {
   res.json(questions)
 })
 
-app.post('/api/submit', (req, res) => {  
-  res.status(200).json( 
-    { 
-      obj: String(Object.values(req.body)), 
+app.post('/api/submit', (req, res) => {
+  res.status(200).json(
+    {
+      obj: String(Object.values(req.body)),
       res: checkAnswer()
     }
   );
 
   function checkAnswer() {
     let answerCheck = false;
-    
-    
+
     answers.map(answer => {
       if (answer.value === String(Object.values(req.body))) {
         answerCheck = true
@@ -55,7 +110,7 @@ app.post('/api/submit', (req, res) => {
       return `Правильно! Правильные ответы: ${count}`
     } else {
       return `Неверно! Правильные ответы: ${count}`
-    } ;
+    };
   }
 })
 
