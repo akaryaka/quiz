@@ -14,11 +14,8 @@ const Container = styled.div`
   flex-direction: column;
 `
 
-const BtnNext = styled.button`
-  padding: 5px;
-  width: 100px;
-  cursor: pointer;
-  margin: 0 auto;
+const Wrapper = styled.div`
+
 `
 
 function App() {
@@ -33,13 +30,16 @@ function App() {
     }
   }
 
+
   return (
     <>
-      <GlobalStyles />
-      <Container>
-        <LayoutPage title={page.title} content={page.component === 'Questions' ? <Question /> : ''} text={page.text} />
-        <BtnNext onClick={handleClick}>{index == (pages.length-1) ? 'сброс' : 'далее'}</BtnNext>
-      </Container>
+      {/* <GlobalStyles /> */}
+      <div className="bg-[rgb(241, 241, 241)]">
+        <Container>
+          <LayoutPage title={page.title} content={page.component === 'Questions' ? <Question /> : ''} text={page.text} />
+          <button className='bg-white w-50 cursor-pointer p-3 hover:bg-sky-700' onClick={handleClick}>{index == (pages.length - 1) ? 'сброс' : (index == 1 ? '' : 'далее')}</button>
+        </Container>
+      </div>
     </>
   )
 }
