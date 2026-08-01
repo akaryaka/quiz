@@ -46,6 +46,7 @@ function Question() {
       {data.map(question => (
         <>
           <div key={question.id}>
+            <div>{question.id} из {data.length}</div>
             <h2 >{question.text}</h2>
             <select name={question.id} onChange={handleChange} id="questions-select">
               {question.options.map(option => <option key={option.id} value={option.id}>{option.city}</option>)}
