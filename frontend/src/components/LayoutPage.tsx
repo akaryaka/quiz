@@ -1,11 +1,3 @@
-import { styled } from "styled-components"
-import { StyledForm } from "./StyledForm"
-import { StyledTitle } from "./StyledTitle"
-
-const Text = styled.p`
-  margin-bottom: 25px;
-`
-
 type PageProps = {
   id?: number;
   title: string;
@@ -16,11 +8,9 @@ type PageProps = {
 function LayoutPage({title, text, content}: PageProps) {
   return(
     <>
-      <StyledForm>
-        <StyledTitle>{title}</StyledTitle>
-        <Text>{text}</Text>
-        {content ? <div>{content}</div> : ''}
-      </StyledForm>
+      <div className="title text-center mb-[10px]">{title}</div>
+      <div className="text text-center">{text}</div>
+      {content ? <div>{content}</div> : ''}
     </>
   )
 }

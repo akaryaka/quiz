@@ -1,22 +1,8 @@
-import GlobalStyles from '@/styles/global.style';
 import { useState } from 'react';
-import styled from 'styled-components';
 import { pages } from './pages';
 import LayoutPage from '../components/LayoutPage';
 import Question from '../components/Question';
 
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`
-
-const Wrapper = styled.div`
-
-`
 
 function App() {
   const [index, setIndex] = useState(0);
@@ -30,15 +16,13 @@ function App() {
     }
   }
 
-
   return (
     <>
-      {/* <GlobalStyles /> */}
-      <div className="bg-[rgb(241, 241, 241)]">
-        <Container>
+      <div className="wrapper flex justify-center items-center w-screen h-screen bg-[linear-gradient(to_right,#faf0cd,#fab397)]">
+        <div className='container p-[30px] w-[530px] h-[400px] d-flex justify-center items-center rounded-[10px] bg-white'>
           <LayoutPage title={page.title} content={page.component === 'Questions' ? <Question /> : ''} text={page.text} />
-          <button className='bg-white w-50 cursor-pointer p-3 hover:bg-sky-700' onClick={handleClick}>{index == (pages.length - 1) ? 'сброс' : (index == 1 ? '' : 'далее')}</button>
-        </Container>
+          <button className='border-green-700 w-50 cursor-pointer p-3 hover:text-white hover:bg-sky-700' onClick={handleClick}>{index == (pages.length - 1) ? 'сброс' : (index == 1 ? '' : 'далее')}</button>
+        </div>
       </div>
     </>
   )
