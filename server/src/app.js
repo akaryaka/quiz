@@ -19,7 +19,7 @@ const pool = new Pool({
 const questions = [
   {
     id: 1,
-    text: 'Вопрос 1. Столица Норвегии',
+    text: 'Столица Норвегии',
     options: [
       {
         id: 1,
@@ -38,7 +38,7 @@ const questions = [
   },
   {
     id: 2,
-    text: 'Вопрос 2. Столица Бельгии',
+    text: 'Столица Бельгии',
     options:
       [
         {
@@ -58,7 +58,7 @@ const questions = [
   },
   {
     id: 3,
-    text: 'Вопрос 3. Столица Германии',
+    text: 'Столица Германии',
     options:
       [
         {
@@ -79,7 +79,9 @@ const questions = [
 ]
 
 const answers = [
-  { id: 1, value: '1' }
+  { id: 1, value: '2' },
+  { id: 2, value: '1' },
+  { id: 3, value: '3' },
 ]
 
 let count = 0
