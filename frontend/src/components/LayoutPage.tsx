@@ -5,11 +5,14 @@ type PageProps = {
   content: any;
 }
 
+const titleStyles = 'title text-center mb-[15px] text-[25px] font-bold uppercase';
+const textStyles = 'text text-center mb-[20px]';
+
 function LayoutPage({title, text, content}: PageProps) {
   return(
     <>
-      <div className="title text-center mb-[15px] text-[25px] font-bold uppercase">{title}</div>
-      <div className="text text-center mb-[20px]">{text}</div>
+      <div className={titleStyles}>{title}</div>
+      <div className={textStyles}>{text}</div>
       {content ? <div>{content}</div> : ''}
     </>
   )

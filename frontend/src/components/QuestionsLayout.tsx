@@ -7,11 +7,14 @@ type QuestionsProps = {
   options?: any;
 }
 
+const titleStyles = 'bg-[#faf0cd] p-3 font-bold rounded-[5px]';
+const wrapperStyles = 'flex justify-between mb-[20px]'
+
 function QuestionsLayout({questionId, text, length, options}: QuestionsProps) {
   return(
     <>
-      <div className="flex justify-between mb-[20px]">
-        <h2>Вопрос {questionId} из {length}. {text}</h2>
+      <div className={wrapperStyles}>
+        <h2 className={titleStyles}>Вопрос {questionId} из {length}. {text}</h2>
         <Select arr={options} selectId={questionId} name={questionId} id='questions-select'/>
       </div>
     </>
