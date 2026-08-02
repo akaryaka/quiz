@@ -80,8 +80,8 @@ const questions = [
 
 const answers = [
   { id: 1, value: '2' },
-  // { id: 2, value: '1' },
-  // { id: 3, value: '3' },
+  { id: 2, value: '1' },
+  { id: 3, value: '3' },
 ]
 
 let count = 0
@@ -93,26 +93,21 @@ app.get('/api/questions', (req, res) => {
 app.post('/api/submit', (req, res) => {
   res.status(200).json(
     {
-      obj: String(Object.values(req.body)),
-      res: checkAnswer()
+      idAnswer: Number(Object.keys(req.body)),
+      answer: checkAnswer()
     }
   );
 
+
   function checkAnswer() {
     let answerCheck = false;
+    let string = ``;
 
-    answers.map(answer => {
-      if (answer.value === String(Object.values(req.body))) {
-        answerCheck = true
-      }
-    })
+    if (answers[String(Object.keys(req.body) - 1)].value == String(Object.values(req.body))) {
+      answerCheck = true;
+    }
 
-    if (answerCheck) {
-      count += 1
-      return `Правильно! Правильные ответы: ${count}`
-    } else {
-      return `Неверно! Правильные ответы: ${count}`
-    };
+    return answerCheck;
   }
 })
 
