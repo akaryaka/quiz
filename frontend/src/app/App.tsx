@@ -9,26 +9,41 @@ const containerStyles = 'container p-[30px] w-[530px] h-[400px] flex flex-col ju
 const btnStyles = 'border border-[#fab397] w-50 uppercase cursor-pointer rounded-[10px] p-1 mt-0 mb-0 ml-auto mr-auto transition-all hover:text-white hover:bg-[#fab397]';
 
 function App() {
-  const [index, setIndex] = useState(0);
-  const page = pages[index];
+  const [indexPage, setIndexPage] = useState(0);
+  const page = pages[indexPage];
   const [btnView, setBtnView] = useState(true);
+  const [resultCount, setResultCount] = useState(0);
   
   function handleClick() {
     setBtnView(false)
     
-    if (index < pages.length-1) {
-      setIndex(index + 1);
+    if (indexPage < pages.length-1) {
+      setIndexPage(indexPage + 1);
     } else {
-      setIndex(0);
+      setIndexPage(0);
     }
-  }
+  } 
 
   return (
     <>
       <div className={wrapperStyles}>
         <div className={containerStyles}>
-          <LayoutPage title={page.title} content={page.component === 'Questions' ? <Question /> : (page.component === 'Result' ? <ResultLayout />: '')} text={page.text} />
-          {btnView ? <button className={btnStyles} onClick={handleClick}>{index == (pages.length - 1) ? 'сброс' : 'начать'}</button> : null}
+          <LayoutPage 
+            title={page.title} 
+            content={page.component === 'Questions' 
+              ? <Question resultCount={setResultCount} onclick={handleClick} /> 
+              : (page.component === 'Result' 
+                ? <ResultLayout result={resultCount}/>
+                : ''
+              )
+            } 
+            text={page.text} />
+          {btnView 
+            ? <button className={btnStyles} onClick={handleClick}>{indexPage == (pages.length - 1) 
+                ? 'сброс' 
+                : 'начать'
+              }</button> 
+            : null}
         </div>
       </div>
     </>

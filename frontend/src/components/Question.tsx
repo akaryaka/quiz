@@ -1,21 +1,15 @@
 import { useState, useEffect } from "react";
 import QuestionsLayout from "./QuestionsLayout";
 
-function Question() {
+function Question({ onclick, resultCount }) {
   const [data, newData] = useState([]);
-  const [question, setQuestion] = useState('Рейкьявик');
   const [length, setLength] = useState(0)
   const [btnView, setBtnView] = useState(true);
   const [index, setIndex] = useState(0);
-  const [countAnswer, setCountAnswer] = useState(0);
   const [btnResultView, setBtnResultView] = useState(false);
   const questionArr = data[index];
   const formStyles = 'flex flex-col justify-center';
   const btnStyles = 'cursor-pointer text-[23px] text-[#fab397] text-center';
-
-  const handleChange = (event: any) => {
-    setQuestion(event.target.value);
-  }
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -36,9 +30,8 @@ function Question() {
       if (response.ok) {
         console.log(result);
         if(result.answer) {
-          setCountAnswer(number => number+1);
+          resultCount(number => number+1);
         }
-        
       }
     } catch (error) {
       console.log(error);
@@ -53,10 +46,6 @@ function Question() {
     }
   }
 
-  function viewRes() {
-    alert(countAnswer)
-  }
-
   useEffect(() => {
     fetch('http://localhost:8000/api/questions')
       .then(res => res.json())
@@ -65,15 +54,27 @@ function Question() {
         setLength(data.length)
       })
       .catch(err => console.error(err));
-  }, []);
-  
+  }, []);  
+
   return(
     <>
-      <form onSubmit={handleSubmit} className={formStyles}>
-        <QuestionsLayout options={questionArr?.options} questionId={questionArr?.id} length={data.length} key={questionArr?.id} id={questionArr?.id} text={questionArr?.text} />
-        {btnView ? <button className={btnStyles}>ответить</button> : null}
-      </form>
-      {btnResultView ? <button onClick={viewRes}>результат</button> : null}
+      <div className="flex justify-center flex-col">
+        <form onSubmit={handleSubmit} className={formStyles}>
+          <QuestionsLayout
+            options={questionArr?.options}
+            questionId={questionArr?.id}
+            length={data.length}
+            key={questionArr?.id}
+            id={questionArr?.id}
+            text={questionArr?.text}
+          />
+          {btnView ? <button className={btnStyles}>ответить</button> : null}
+        </form>
+        {btnResultView
+          ? <button className={btnStyles} onClick={onclick}>результат</button>
+          : null
+        }
+      </div>
     </>
   )
 }
