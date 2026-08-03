@@ -33,48 +33,61 @@ const questions = [
         id: 3,
         city: 'Лондон'
       },
-    ],
-    status: true
+    ]
   },
   {
     id: 2,
     text: 'Столица Бельгии',
-    options:
-      [
-        {
-          id: 1,
-          city: 'Брюссель'
-        },
-        {
-          id: 2,
-          city: 'Рейкъявик'
-        },
-        {
-          id: 3,
-          city: 'Брюгге'
-        },
-      ],
-    status: false
+    options: [
+      {
+        id: 1,
+        city: 'Брюссель'
+      },
+      {
+        id: 2,
+        city: 'Рейкъявик'
+      },
+      {
+        id: 3,
+        city: 'Брюгге'
+      },
+    ],
   },
   {
     id: 3,
     text: 'Столица Германии',
-    options:
-      [
-        {
-          id: 1,
-          city: 'Бостон'
-        },
-        {
-          id: 2,
-          city: 'Мюнхен'
-        },
-        {
-          id: 3,
-          city: 'Берлин'
-        },
-      ],
-    status: false
+    options: [
+      {
+        id: 1,
+        city: 'Бостон'
+      },
+      {
+        id: 2,
+        city: 'Мюнхен'
+      },
+      {
+        id: 3,
+        city: 'Берлин'
+      },
+    ],
+  },
+  {
+    id: 4,
+    text: 'Столица США',
+    options: [
+      {
+        id: 1,
+        city: 'Мехико'
+      },
+      {
+        id: 2,
+        city: 'Нью-Йорк'
+      },
+      {
+        id: 3,
+        city: 'Вашингтон'
+      },
+    ],
   }
 ]
 
@@ -82,6 +95,7 @@ const answers = [
   { id: 1, value: '2' },
   { id: 2, value: '1' },
   { id: 3, value: '3' },
+  { id: 4, value: '3' },
 ]
 
 let count = 0
