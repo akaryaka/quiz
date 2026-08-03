@@ -38,7 +38,7 @@ function App() {
           <LayoutPage 
             title={page.title} 
             content={page.component === 'Questions' 
-              ? <Question resultCount={setResultCount} onclick={handleClick} /> 
+              ? <Question resultCount={setResultCount} onClick={handleClick} /> 
               : (page.component === 'Result' 
                 ? <ResultLayout onClick={reset} result={resultCount}/>
                 : ''

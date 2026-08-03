@@ -1,5 +1,10 @@
-function ResultLayout({result, onClick}) {
-  return(
+type Props = {
+  result: number;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+function ResultLayout({ result, onClick }: Props) {
+  return (
     <>
       <div className="flex flex-col items-center text-center text-[23px]">
         <div className="mb-[20px]">

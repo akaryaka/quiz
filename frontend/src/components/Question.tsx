@@ -1,19 +1,30 @@
 import { useState, useEffect } from "react";
 import QuestionsLayout from "./QuestionsLayout";
 
-function Question({ onclick, resultCount }) {
+type Props = {
+  onClick: any;
+  resultCount: any;
+}
+
+type Question = {
+  options: any;
+  id: number;
+  text: string;
+}
+
+function Question({ onClick, resultCount }: Props) {
   const [data, newData] = useState([]);
   const [length, setLength] = useState(0)
   const [btnView, setBtnView] = useState(true);
   const [index, setIndex] = useState(0);
   const [btnResultView, setBtnResultView] = useState(false);
-  const questionArr = data[index];
+  const questionArr: Question = data[index];
   const formStyles = 'flex flex-col justify-center';
   const btnStyles = 'cursor-pointer text-[23px] text-[#fab397] text-center';
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-   
+
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     try {
@@ -29,15 +40,15 @@ function Question({ onclick, resultCount }) {
 
       if (response.ok) {
         console.log(result);
-        if(result.answer) {
-          resultCount(number => number+1);
+        if (result.answer) {
+          resultCount((number: number) => number + 1);
         }
       }
     } catch (error) {
       console.log(error);
     }
 
-    if (index < length-1) {
+    if (index < length - 1) {
       setIndex(index + 1);
     } else {
       setBtnView(false)
@@ -54,9 +65,9 @@ function Question({ onclick, resultCount }) {
         setLength(data.length)
       })
       .catch(err => console.error(err));
-  }, []);  
+  }, []);
 
-  return(
+  return (
     <>
       <div className="flex justify-center flex-col">
         <form onSubmit={handleSubmit} className={formStyles}>
@@ -65,13 +76,12 @@ function Question({ onclick, resultCount }) {
             questionId={questionArr?.id}
             length={data.length}
             key={questionArr?.id}
-            id={questionArr?.id}
             text={questionArr?.text}
           />
           {btnView ? <button className={btnStyles}>ответить</button> : null}
         </form>
         {btnResultView
-          ? <button className={btnStyles} onClick={onclick}>результат</button>
+          ? <button className={btnStyles} onClick={onClick}>результат</button>
           : null
         }
       </div>
