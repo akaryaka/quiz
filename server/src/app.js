@@ -112,10 +112,8 @@ app.post('/api/submit', (req, res) => {
     }
   );
 
-
   function checkAnswer() {
     let answerCheck = false;
-    let string = ``;
 
     if (answers[String(Object.keys(req.body) - 1)].value == String(Object.values(req.body))) {
       answerCheck = true;
