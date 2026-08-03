@@ -10,9 +10,10 @@ const btnStyles = 'border border-[#fab397] w-50 uppercase cursor-pointer rounded
 
 function App() {
   const [indexPage, setIndexPage] = useState(0);
-  const page = pages[indexPage];
   const [btnView, setBtnView] = useState(true);
   const [resultCount, setResultCount] = useState(0);
+
+  const page = pages[indexPage];
   
   function handleClick() {
     setBtnView(false)
@@ -24,6 +25,12 @@ function App() {
     }
   } 
 
+  function reset() {
+    setIndexPage(0);
+    setBtnView(true);
+    setResultCount(0);
+  }
+
   return (
     <>
       <div className={wrapperStyles}>
@@ -33,7 +40,7 @@ function App() {
             content={page.component === 'Questions' 
               ? <Question resultCount={setResultCount} onclick={handleClick} /> 
               : (page.component === 'Result' 
-                ? <ResultLayout result={resultCount}/>
+                ? <ResultLayout onClick={reset} result={resultCount}/>
                 : ''
               )
             } 
