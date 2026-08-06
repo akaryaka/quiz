@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { pages } from './pages';
-import LayoutPage from '../components/LayoutPage';
-import Question from '../components/Question';
-import ResultLayout from '../components/ResultLauot';
+import LayoutPage from '@/components/LayoutPage';
+import Question from '@/components/Question';
+import ResultLayout from '@/components/ResultLauot';
 
 const wrapperStyles = 'wrapper flex justify-center items-center w-screen h-screen bg-[linear-gradient(to_right,#faf0cd,#fab397)]'; 
 const containerStyles = 'container p-[30px] w-[530px] h-[400px] flex flex-col justify-center rounded-[10px] bg-white';
