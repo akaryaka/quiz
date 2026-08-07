@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: '/quiz/',
+  // base: '/quiz/',
   server: {
     open: true,
   },

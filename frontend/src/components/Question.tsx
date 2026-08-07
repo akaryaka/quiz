@@ -113,6 +113,9 @@ function Question({ onClick, resultCount }: Props) {
       .catch(err => console.error(err));
   }, []) 
 
+  console.log(answerStatic);
+  
+
   return (
     <>
       <div className="flex justify-center flex-col">
