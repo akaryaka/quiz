@@ -56,7 +56,7 @@ function Question({ onClick, resultCount }: Props) {
         },
         body: JSON.stringify(data),
       })
-      const resultStatic = await responseStatic.json();
+      // const resultStatic = await responseStatic.json();
 
       const responseStaticAnswer = await fetch('/answers.json', {
         method: 'POST',
