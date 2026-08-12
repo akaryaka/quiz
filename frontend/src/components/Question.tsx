@@ -77,10 +77,8 @@ function Question({ onClick, resultCount }: Props) {
         setLength(data.length)
         setLoad(false)
         setCheckServer(true)
-        console.log(data, ',', load, ',', checkServer);
       })
       .catch(err => {
-        console.log(data, ',', load, ',', checkServer);
         console.error(err, 'файл с бэка не загружен');
         setLoad(false)
         newData(questions);
