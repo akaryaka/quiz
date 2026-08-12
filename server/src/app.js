@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import { Pool } from "pg";
+import questions from './assets/questions.json' with {type: 'json'};
+import answers from './assets/answers.json' with {type: 'json'};
 
 const port = 8000;
 const app = express();
@@ -9,94 +11,12 @@ app.use(cors());
 app.use(express.json());
 
 const pool = new Pool({
-  user: 'user',
+  user: 'postgres',
   host: 'localhost',
-  database: 'db',
-  password: 'bd-pass',
-  port: 5432, // стандартный порт PostgreSQL
+  database: 'quiz',
+  password: 'admin@123',
+  port: 5432,
 });
-
-const questions = [
-  {
-    id: 1,
-    text: 'Столица Норвегии',
-    options: [
-      {
-        id: 1,
-        city: 'Рейкьявик'
-      },
-      {
-        id: 2,
-        city: 'Осло'
-      },
-      {
-        id: 3,
-        city: 'Лондон'
-      },
-    ]
-  },
-  {
-    id: 2,
-    text: 'Столица Бельгии',
-    options: [
-      {
-        id: 1,
-        city: 'Брюссель'
-      },
-      {
-        id: 2,
-        city: 'Рейкъявик'
-      },
-      {
-        id: 3,
-        city: 'Брюгге'
-      },
-    ],
-  },
-  {
-    id: 3,
-    text: 'Столица Германии',
-    options: [
-      {
-        id: 1,
-        city: 'Бостон'
-      },
-      {
-        id: 2,
-        city: 'Мюнхен'
-      },
-      {
-        id: 3,
-        city: 'Берлин'
-      },
-    ],
-  },
-  {
-    id: 4,
-    text: 'Столица США',
-    options: [
-      {
-        id: 1,
-        city: 'Мехико'
-      },
-      {
-        id: 2,
-        city: 'Нью-Йорк'
-      },
-      {
-        id: 3,
-        city: 'Вашингтон'
-      },
-    ],
-  }
-]
-
-const answers = [
-  { id: 1, value: '2' },
-  { id: 2, value: '1' },
-  { id: 3, value: '3' },
-  { id: 4, value: '3' },
-]
 
 let count = 0
 
