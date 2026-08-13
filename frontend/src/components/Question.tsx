@@ -77,6 +77,7 @@ function Question({ onClick, resultCount }: Props) {
         setLength(data.length)
         setLoad(false)
         setCheckServer(true)
+        console.log(data);
       })
       .catch(err => {
         console.error(err, 'файл с бэка не загружен');
@@ -85,6 +86,17 @@ function Question({ onClick, resultCount }: Props) {
         setLength(questions.length)
       });
   }, []); 
+
+  useEffect(() => {
+    fetch('http://localhost:8000/test-db')
+      .then(res => res.json())
+      .then(data => {
+        console.log(Object.values(data)[1]);
+      })
+      .catch(err => {
+        console.error(err, 'файл с бд не загружен');
+      });
+  }, [])
 
   function Form () {
     return(

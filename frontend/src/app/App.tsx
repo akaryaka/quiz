@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { pages } from './pages';
 import LayoutPage from '@/components/LayoutPage';
 import Question from '@/components/Question';
@@ -30,18 +30,6 @@ function App() {
     setBtnView(true);
     setResultCount(0);
   }
-
-  useEffect(() => {
-    fetch('http://localhost:8000/test-db')
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-      })
-      .catch(err => {
-        console.error(err, 'файл с бд не загружен');
-      });
- 
-  }, [])
 
   return (
     <>
