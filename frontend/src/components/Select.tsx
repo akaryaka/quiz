@@ -1,20 +1,21 @@
 const selectStyles = 'bg-[#faf0cd] p-3 rounded-[5px]'
 
 type Props = {
-  arr: Array<string> | string;
+  arr: string[];
   name: any;
   selectId: any;
 }
 
 function Select({ arr, name, selectId }: Props) {
-  const strToArr = arr;
+  const rmFigure: any = arr.slice(1, arr.length-1);
+  const strToArr = rmFigure.split(',');
   console.log(strToArr);
   
   return (
     <>
       <select className={selectStyles} key={selectId} name={name} id={selectId}>
-        {arr
-          ? arr.map((item: any) => <option key={item.key} value={item.id}>{item.city}</option>)
+        {strToArr
+          ? strToArr.map((item: any, key: any) => <option key={key} value={key}>{item}</option>)
           : 'error'}
       </select>
     </>

@@ -13,7 +13,7 @@ export const routes = (app: Express) => {
 
   app.get('/test-db', async (req: Request, res: Response) => {
     try {
-      const result = await pool.query('SELECT id, text from questions;');
+      const result = await pool.query('SELECT * from questions;');
       res.json({ success: true, time: result.rows }); 
     } catch (err) {
       console.error(err);
@@ -33,9 +33,9 @@ export const routes = (app: Express) => {
       let answerCheck: boolean = false;
       let questionId: number = Number(Object.keys(req.body))-1;
     
-      // if ((typeAnswers[questionId].value) === Number(Object.values(req.body))) {
-      //   answerCheck = true;
-      // }
+      if ((typeAnswers[questionId].value) === Number(Object.values(req.body))) {
+        answerCheck = true;
+      }
 
       return answerCheck;
     }
