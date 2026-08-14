@@ -1,18 +1,8 @@
 import { useState, useEffect } from "react";
 import answers from '@/assets/answers.json';
-import questions from '@/assets/questions.json';
 import QuestionsLayout from "./QuestionsLayout";
-
-type Props = {
-  onClick: any;
-  resultCount: any;
-}
-
-type Question = {
-  options: any;
-  id: number;
-  text: string;
-}
+import type { Props } from "./Question.props";
+import type { Question } from "./Question.type";
 
 function Question({ onClick, resultCount }: Props) {
   const [data, newData] = useState<any>([]);
@@ -22,8 +12,8 @@ function Question({ onClick, resultCount }: Props) {
   const [btnResultView, setBtnResultView] = useState(false);
   const [load, setLoad] = useState(true);
   const [checkServer, setCheckServer] = useState(false);
-  const questionArr: Question = data[index];
 
+  const questionArr: Question = data[index];
   const formStyles = 'flex flex-col justify-center';
   const btnStyles = 'cursor-pointer text-[23px] text-[#fab397] text-center';
 
@@ -69,24 +59,6 @@ function Question({ onClick, resultCount }: Props) {
     }
   }
 
-  // useEffect(() => {
-  //   fetch('http://localhost:8000/api/questions')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       // newData(data)
-  //       // setLength(data.length)
-  //       setLoad(false)
-  //       setCheckServer(true)
-  //       console.log(data);
-  //     })
-  //     .catch(err => {
-  //       console.error(err, 'файл с бэка не загружен');
-  //       // setLoad(false)
-  //       // newData(questions);
-  //       // setLength(questions.length)
-  //     });
-  // }, []); 
-
   useEffect(() => {
     fetch('http://localhost:8000/test-db')
       .then(res => res.json())
@@ -96,26 +68,26 @@ function Question({ onClick, resultCount }: Props) {
         setLength(dataFromDb.length)
         setLoad(false)
         setCheckServer(true)
-        console.log(dataFromDb);
       })
       .catch(err => {
         console.error(err, 'файл с бд не загружен');
         setLoad(false)
-        // newData(questions);
-        // setLength(questions.length)
       });
   }, [])
 
-  function Form () {
-    return(
-      <>
-         <form onSubmit={handleSubmit} className={formStyles}>
+  return (
+    <>
+      <div className="flex justify-center flex-col">
+        {load 
+          ? 'загрузка...' 
+          : <>
+            <form onSubmit={handleSubmit} className={formStyles}>
           <QuestionsLayout
-            options={questionArr?.options}
+            options={questionArr.options}
             questionId={questionArr?.id}
             length={data.length}
-            key={questionArr?.id}
-            text={questionArr?.text}
+            key={questionArr.id}
+            text={questionArr.text}
           />
           {btnView ? <button className={btnStyles}>ответить</button> : null}
         </form>
@@ -123,14 +95,7 @@ function Question({ onClick, resultCount }: Props) {
           ? <button className={btnStyles} onClick={onClick}>результат</button>
           : null
         }
-      </>
-    )
-  }
-
-  return (
-    <>
-      <div className="flex justify-center flex-col">
-        {load ? 'загрузка...' : <Form />}
+          </>}
       </div>
     </>
   )

@@ -1,10 +1,10 @@
 import Select from "./Select"
 
 type QuestionsProps = {
-  questionId?: number;
+  questionId: number;
   text: string;
   length: number;
-  options?: any;
+  options: string[];
 }
 
 const titleStyles = 'bg-[#faf0cd] p-3 font-bold rounded-[5px]';

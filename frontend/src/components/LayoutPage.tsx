@@ -1,8 +1,10 @@
+import type { ReactNode } from "react";
+
 type PageProps = {
   id?: number;
   title: string;
   text: string;
-  content: any;
+  content: ReactNode;
 }
 
 const titleStyles = 'title text-center mb-[15px] text-[25px] font-bold uppercase';

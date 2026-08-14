@@ -44,13 +44,15 @@ function App() {
                 : ''
               )
             } 
-            text={page.text} />
+            text={page.text} 
+          />
           {btnView 
             ? <button className={btnStyles} onClick={handleClick}>{indexPage == (pages.length - 1) 
                 ? 'сброс' 
                 : 'начать'
               }</button> 
-            : null}
+            : null
+          }
         </div>
       </div>
     </>
