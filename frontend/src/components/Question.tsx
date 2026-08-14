@@ -69,32 +69,40 @@ function Question({ onClick, resultCount }: Props) {
     }
   }
 
-  useEffect(() => {
-    fetch('http://localhost:8000/api/questions')
-      .then(res => res.json())
-      .then(data => {
-        newData(data)
-        setLength(data.length)
-        setLoad(false)
-        setCheckServer(true)
-        console.log(data);
-      })
-      .catch(err => {
-        console.error(err, 'файл с бэка не загружен');
-        setLoad(false)
-        newData(questions);
-        setLength(questions.length)
-      });
-  }, []); 
+  // useEffect(() => {
+  //   fetch('http://localhost:8000/api/questions')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       // newData(data)
+  //       // setLength(data.length)
+  //       setLoad(false)
+  //       setCheckServer(true)
+  //       console.log(data);
+  //     })
+  //     .catch(err => {
+  //       console.error(err, 'файл с бэка не загружен');
+  //       // setLoad(false)
+  //       // newData(questions);
+  //       // setLength(questions.length)
+  //     });
+  // }, []); 
 
   useEffect(() => {
     fetch('http://localhost:8000/test-db')
       .then(res => res.json())
       .then(data => {
-        console.log(Object.values(data)[1]);
+        const dataFromDb: any = Object.values(data)[1];
+        newData(dataFromDb)
+        setLength(dataFromDb.length)
+        setLoad(false)
+        setCheckServer(true)
+        console.log(dataFromDb);
       })
       .catch(err => {
         console.error(err, 'файл с бд не загружен');
+        setLoad(false)
+        // newData(questions);
+        // setLength(questions.length)
       });
   }, [])
 

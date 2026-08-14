@@ -1,12 +1,15 @@
 const selectStyles = 'bg-[#faf0cd] p-3 rounded-[5px]'
 
 type Props = {
-  arr: Array<any>;
+  arr: Array<string> | string;
   name: any;
   selectId: any;
 }
 
 function Select({ arr, name, selectId }: Props) {
+  const strToArr = arr;
+  console.log(strToArr);
+  
   return (
     <>
       <select className={selectStyles} key={selectId} name={name} id={selectId}>
