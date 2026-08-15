@@ -5,9 +5,12 @@ import type { Props } from "./Question.props";
 import type { Question } from "./Question.type";
 
 function Question({ onClick, resultCount }: Props) {
+  // массив с бд
   const [data, newData] = useState<any>([]);
+  // длина массива вопросов
   const [length, setLength] = useState(0)
   const [btnView, setBtnView] = useState(true);
+  // индекс страницы
   const [index, setIndex] = useState(0);
   const [btnResultView, setBtnResultView] = useState(false);
   const [load, setLoad] = useState(true);
@@ -36,7 +39,6 @@ function Question({ onClick, resultCount }: Props) {
       const result = await response.json();
 
       if (response.ok) {
-        console.log(result);
         if (result.answer) {
           resultCount((number: number) => number + 1);
         }
@@ -70,8 +72,8 @@ function Question({ onClick, resultCount }: Props) {
         setCheckServer(true)
       })
       .catch(err => {
-        console.error(err, 'файл с бд не загружен');
-        setLoad(false)
+        console.error(err, 'файл с вопросами из бд не загружен');
+        setLoad(true)
       });
   }, [])
 
@@ -83,7 +85,7 @@ function Question({ onClick, resultCount }: Props) {
         console.log(answersFromDb);
       })
       .catch(err => {
-        console.error(err, 'файл с бд не загружен');
+        console.error(err, 'файл с ответами из бд не загружен');
       });
   }, [])
 
