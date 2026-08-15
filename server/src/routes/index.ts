@@ -11,9 +11,19 @@ export const routes = (app: Express) => {
     res.json(questions)
   })
 
-  app.get('/test-db', async (req: Request, res: Response) => {
+  app.get('/questions-db', async (req: Request, res: Response) => {
     try {
       const result = await pool.query('SELECT * from questions;');
+      res.json({ success: true, time: result.rows }); 
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Ошибка подключения к БД');
+    }
+  });
+
+  app.get('/answers-db', async (req: Request, res: Response) => {
+    try {
+      const result = await pool.query('SELECT * from answers;');
       res.json({ success: true, time: result.rows }); 
     } catch (err) {
       console.error(err);

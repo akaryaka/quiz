@@ -60,7 +60,7 @@ function Question({ onClick, resultCount }: Props) {
   }
 
   useEffect(() => {
-    fetch('http://localhost:8000/test-db')
+    fetch('http://localhost:8000/questions-db')
       .then(res => res.json())
       .then(data => {
         const dataFromDb: any = Object.values(data)[1];
@@ -72,6 +72,18 @@ function Question({ onClick, resultCount }: Props) {
       .catch(err => {
         console.error(err, 'файл с бд не загружен');
         setLoad(false)
+      });
+  }, [])
+
+  useEffect(() => {
+    fetch('http://localhost:8000/answers-db')
+      .then(res => res.json())
+      .then(data => {
+        const answersFromDb: any = Object.values(data)[1];
+        console.log(answersFromDb);
+      })
+      .catch(err => {
+        console.error(err, 'файл с бд не загружен');
       });
   }, [])
 
